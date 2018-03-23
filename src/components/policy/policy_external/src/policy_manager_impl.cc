@@ -640,6 +640,7 @@ void PolicyManagerImpl::CheckPermissions(const PTString& app_id,
              rpc_permissions[rpc].hmi_permissions[kUserDisallowedKey].find(
                  hmi_level)) {
     // RPC found in allowed == allowed by backend, but disallowed by user
+    LOG4CXX_DEBUG(logger_, "RPC found in allowed == allowed by backend, but disallowed by user");
     result.hmi_level_permitted = kRpcUserDisallowed;
   } else {
     LOG4CXX_DEBUG(logger_,
