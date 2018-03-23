@@ -591,11 +591,11 @@ void PolicyManagerImpl::CheckPermissions(const PTString& app_id,
     policy_table::Strings app_groups =
         GetGroupsNames(app_group_permissions);
 
-#ifdef SDL_REMOTE_CONTROL
-    ApplicationOnDevice who = {device_id, app_id};
-    const auto rc_groups = access_remote_->GetGroups(who);
-    app_groups.insert(app_groups.end(), rc_groups.begin(), rc_groups.end());
-#endif // SDL_REMOTE_CONTROL
+//#ifdef SDL_REMOTE_CONTROL
+//    ApplicationOnDevice who = {device_id, app_id};
+//    const auto rc_groups = access_remote_->GetGroups(who);
+//    app_groups.insert(app_groups.end(), rc_groups.begin(), rc_groups.end());
+//#endif // SDL_REMOTE_CONTROL
 
 
     // Undefined groups (without user consent) disallowed by default, since
