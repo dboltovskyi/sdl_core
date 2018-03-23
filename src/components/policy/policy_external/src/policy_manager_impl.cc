@@ -588,13 +588,15 @@ void PolicyManagerImpl::CheckPermissions(const PTString& app_id,
     policy_table::FunctionalGroupings functional_groupings;
     cache_->GetFunctionalGroupings(functional_groupings);
 
+    policy_table::Strings app_groups =
+        GetGroupsNames(app_group_permissions);
+
 #ifdef SDL_REMOTE_CONTROL
     ApplicationOnDevice who = {device_id, app_id};
-    const policy_table::Strings app_groups = access_remote_->GetGroups(who);
-#else   // SDL_REMOTE_CONTROL
-    const policy_table::Strings app_groups =
-        GetGroupsNames(app_group_permissions);
-#endif  // SDL_REMOTE_CONTROL
+    const auto rc_groups = access_remote_->GetGroups(who);
+    app_groups.insert(app_groups.end(), rc_groups.begin(), rc_groups.end());
+#endif // SDL_REMOTE_CONTROL
+
 
     // Undefined groups (without user consent) disallowed by default, since
     // OnPermissionsChange notification has no "undefined" section
@@ -615,7 +617,8 @@ void PolicyManagerImpl::CheckPermissions(const PTString& app_id,
   }
 
   const bool known_rpc = rpc_permissions.end() != rpc_permissions.find(rpc);
-  LOG4CXX_INFO(logger_, "Is known rpc " << known_rpc);
+  LOG4CXX_DEBUG(logger_, "Is known rpc " <<
+                (known_rpc ? "true" : "false") );
   if (!known_rpc) {
     // RPC not found in list == disallowed by backend
     result.hmi_level_permitted = kRpcDisallowed;
@@ -967,6 +970,7 @@ void PolicyManagerImpl::CheckPendingPermissionsChanges(
 void PolicyManagerImpl::NotifyPermissionsChanges(
     const std::string& policy_app_id,
     const std::vector<FunctionalGroupPermission>& app_group_permissions) {
+  LOG4CXX_AUTO_TRACE(logger_);
   // Get current functional groups from DB with RPC permissions
   policy_table::FunctionalGroupings functional_groups;
   cache_->GetFunctionalGroupings(functional_groups);
@@ -986,10 +990,6 @@ void PolicyManagerImpl::SetUserConsentForApp(
     const PermissionConsent& permissions, const NotificationMode mode) {
   LOG4CXX_AUTO_TRACE(logger_);
 
-  if (permissions.group_permissions.empty()) {
-    LOG4CXX_DEBUG(logger_, "Permissions list is empty, skipping update.");
-    return;
-  }
 
   cache_->ResetCalculatedPermissions();
   PermissionConsent verified_permissions =
