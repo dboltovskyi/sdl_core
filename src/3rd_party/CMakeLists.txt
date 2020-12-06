@@ -201,7 +201,7 @@ if ((NOT "${BSON_FOUND}") OR ("${BSON_VERSION}" VERSION_LESS "1.2.0"))
   include(ExternalProject)
   ExternalProject_Add(libbson
       GIT_REPOSITORY "https://github.com/smartdevicelink/bson_c_lib.git"
-      GIT_TAG "master"
+      GIT_TAG "hotfix/ci_build_failures"
       BINARY_DIR ${BSON_LIB_SOURCE_DIRECTORY}
       INSTALL_DIR ${3RD_PARTY_INSTALL_PREFIX}
       DOWNLOAD_DIR ${BSON_LIB_SOURCE_DIRECTORY}
