@@ -1770,7 +1770,7 @@
 <struct name="WindowStatus">
   <description>Describes the status of a window of a door/liftgate etc.</description>
   <param name="location" type="Common.Grid" mandatory="true"/>
-  <param name="state" type="Common.WindowState" mandatory="true"/>      
+  <param name="state" type="Common.WindowState" mandatory="true"/>
 </struct>
 
 <struct name="ModuleInfo">
@@ -1799,7 +1799,7 @@
     <description>Contains information about the locations of each seat</description>
     <param name="rows" type="Integer" minvalue="1" maxvalue="100" mandatory="false"></param>
     <param name="columns" type="Integer" minvalue="1" maxvalue="100" mandatory="false"></param>
-    <param name="levels" type="Integer" minvalue="1" maxvalue="100" defvalue="1" mandatory="false">   
+    <param name="levels" type="Integer" minvalue="1" maxvalue="100" defvalue="1" mandatory="false">
     </param>
     <param name="seats" type="SeatLocation" array="true" mandatory="false">
         <description>Contains a list of SeatLocation in the vehicle</description>
@@ -3165,7 +3165,7 @@
   </param>
   <param name="autoCompleteList" type="String" maxlength="1000" minsize="0" maxsize="100" array="true" mandatory="false">
     <description>
-      Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types. 
+      Allows an app to pre-populate the text field with a list of suggested or completed entries as the user types.
       If empty, the auto-complete list will be removed from the screen.
     </description>
   </param>
@@ -4262,9 +4262,9 @@
         </param>
         <param name="driverDistractionCapability" type="DriverDistractionCapability" mandatory="false">
             <description>Describes capabilities when the driver is distracted</description>
-        </param>      
+        </param>
     </struct>
-    
+
     <enum name="HybridAppPreference">
         <description>Enumeration for the user's preference of which app type to use when both are available</description>
         <element name="MOBILE" />
@@ -4829,7 +4829,7 @@
       <description>ID of application that is related to this RPC.</description>
     </param>
   </function>
-  
+
   <function name="SetAppProperties" messagetype="request">
     <description>
       HMI >SDL. RPC used to enable/disable an application and set authentication data
@@ -4837,12 +4837,12 @@
     <param name="properties" type="Common.AppProperties" mandatory="true">
       <description>The new application properties</description>
     </param>
-  </function> 
-  
+  </function>
+
   <function name="SetAppProperties" messagetype="response">
     <description>The response to SetAppProperties</description>
   </function>
-  
+
   <function name="GetAppProperties" messagetype="request">
     <description>
       HMI >SDL. RPC used to get the current properties of an application
@@ -4854,14 +4854,14 @@
       </description>
     </param>
   </function>
-  
+
   <function name="GetAppProperties" messagetype="response">
     <description>The response to GetAppProperties</description>
     <param name="properties" type="Common.AppProperties" array="true" minsize="1" mandatory="false">
       <description>The requested application properties</description>
     </param>
   </function>
-  
+
   <function name="OnAppPropertiesChange" messagetype="notification">
     <description>
       SDL >HMI. RPC used to inform HMI about app properties change (such as auth token).
@@ -5180,7 +5180,7 @@
     </param>
     <param name="alertIcon" type="Common.Image" mandatory="false" >
       <description>
-        Image to be displayed for the corresponding alert. See Image. 
+        Image to be displayed for the corresponding alert. See Image.
         If omitted, no (or the default if applicable) icon should be displayed.
       </description>
     </param>
@@ -5199,7 +5199,7 @@
     </param>
     <param name="alertIcon" type="Common.Image" mandatory="false">
       <description>
-        Image to be displayed for the corresponding alert. See Image. 
+        Image to be displayed for the corresponding alert. See Image.
         If omitted, no (or the default if applicable) icon should be displayed.
       </description>
     </param>
@@ -6828,7 +6828,7 @@
     <param name="electronicParkBrakeStatus" type="Common.ElectronicParkBrakeStatus" mandatory="false">
       <description>The status of the park brake as provided by Electric Park Brake (EPB) system.</description>
     </param>
-    <param name="cloudAppVehicleID" type="String" mandatory="false">
+    <param name="cloudAppVehicleID" type="String" minlength="0" mandatory="false">
       <description>Parameter used by cloud apps to identify a head unit</description>
     </param>
     <param name="stabilityControlsStatus" type="Common.StabilityControlsStatus" mandatory="false">
@@ -6937,7 +6937,7 @@
     <param name="steeringWheelAngle" type="Float" minvalue="-2000" maxvalue="2000" mandatory="false">
       <description>Current angle of the steering wheel (in deg)</description>
     </param>
-    <param name="cloudAppVehicleID" type="String" mandatory="false">
+    <param name="cloudAppVehicleID" type="String" minlength="0" mandatory="false">
       <description>Parameter used by cloud apps to identify a head unit</description>
     </param>
     <param name="engineOilLife" type="Float" minvalue="0" maxvalue="100" mandatory="false">
@@ -7177,7 +7177,7 @@
       <description>See SeatLocationCapability, all available seat locations shall be returned.</description>
     </param>
   </function>
-  
+
 <function name="SetGlobalProperties" messagetype="request">
     <description>Sets some properties for the application initiated request.</description>
     <param name="userLocation" type="Common.SeatLocation" mandatory="false">
@@ -7243,7 +7243,7 @@
   </function>
   <function name="GetInteriorVehicleDataConsent" messagetype="response">
     <param name="allowed" type="Boolean" array="true" mandatory="true">
-      <description>This array has the same size as "moduleIds" in the request; each element corresponding to one moduleId 
+      <description>This array has the same size as "moduleIds" in the request; each element corresponding to one moduleId
       "true" - if the driver grants the permission for controlling the named app;
       "false" - in case the driver denies the permission for controlling the named app.</description>
     </param>
