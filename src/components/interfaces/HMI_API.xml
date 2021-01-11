@@ -6768,7 +6768,7 @@
     <param name="instantFuelConsumption" type="Float" minvalue="0" maxvalue="25575" mandatory="false">
       <description>The instantaneous fuel consumption in microlitres</description>
     </param>
-    <param name="fuelRange" type="Common.FuelRange" minsize="0" maxsize="100" array="true" mandatory="false">
+    <param name="fuelRange" type="Common.FuelRange" maxsize="100" array="true" mandatory="false">
       <description>
         The fuel type, estimated range in KM, fuel level/capacity and fuel level state for the vehicle.
         See struct FuelRange for details.
