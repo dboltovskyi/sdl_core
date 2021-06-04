@@ -243,12 +243,11 @@ RESULT_CODE MultiFrameBuilder::HandleConsecutiveFrame(
     SDL_LOG_TRACE("Last CONSECUTIVE frame");
   } else {
     uint8_t previous_frame_data = assembling_frame->frame_data();
-    if (previous_frame_data == std::numeric_limits<uint8_t>::max() ||
-        assembling_frame->frame_type() == FRAME_TYPE_FIRST) {
+    if (previous_frame_data == std::numeric_limits<uint8_t>::max()) {
       previous_frame_data = 0u;
     }
     // The next frame data is bigger at 1
-    if (new_frame_data != (previous_frame_data + 1)) {
+    if (new_frame_data > 1 && new_frame_data != (previous_frame_data + 1)) {
       SDL_LOG_ERROR("Unexpected CONSECUTIVE frame for connection_id: "
                     << connection_id
                     << ", session_id: " << static_cast<int>(session_id)
