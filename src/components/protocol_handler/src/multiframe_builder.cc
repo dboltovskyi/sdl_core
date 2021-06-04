@@ -197,6 +197,7 @@ RESULT_CODE MultiFrameBuilder::HandleFirstFrame(const ProtocolFramePtr packet) {
                 << connection_id
                 << ", session_id: " << static_cast<int>(session_id)
                 << ", message_id: " << message_id);
+  packet->set_frame_data(FRAME_DATA_FIRST);
   messageId_map[message_id] = {packet, date_time::getCurrentTime()};
   return RESULT_OK;
 }
@@ -247,7 +248,7 @@ RESULT_CODE MultiFrameBuilder::HandleConsecutiveFrame(
       previous_frame_data = 0u;
     }
     // The next frame data is bigger at 1
-    if (new_frame_data > 1 && new_frame_data != (previous_frame_data + 1)) {
+    if (new_frame_data != (previous_frame_data + 1)) {
       SDL_LOG_ERROR("Unexpected CONSECUTIVE frame for connection_id: "
                     << connection_id
                     << ", session_id: " << static_cast<int>(session_id)
