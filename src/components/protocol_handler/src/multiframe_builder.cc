@@ -243,7 +243,8 @@ RESULT_CODE MultiFrameBuilder::HandleConsecutiveFrame(
     SDL_LOG_TRACE("Last CONSECUTIVE frame");
   } else {
     uint8_t previous_frame_data = assembling_frame->frame_data();
-    if (previous_frame_data == std::numeric_limits<uint8_t>::max()) {
+    if (previous_frame_data == std::numeric_limits<uint8_t>::max() ||
+        assembling_frame->frame_type() == FRAME_TYPE_FIRST) {
       previous_frame_data = 0u;
     }
     // The next frame data is bigger at 1
