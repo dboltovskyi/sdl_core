@@ -247,13 +247,13 @@ RESULT_CODE MultiFrameBuilder::HandleConsecutiveFrame(
       previous_frame_data = 0u;
     }
     // The next frame data is bigger at 1
-    if (new_frame_data != (previous_frame_data + 1)) {
-      SDL_LOG_ERROR("Unexpected CONSECUTIVE frame for connection_id: "
-                    << connection_id
-                    << ", session_id: " << static_cast<int>(session_id)
-                    << ", message_id: " << message_id << ", frame: " << packet);
-      return RESULT_FAIL;
-    }
+    // if (new_frame_data != (previous_frame_data + 1)) {
+    //   SDL_LOG_ERROR("Unexpected CONSECUTIVE frame for connection_id: "
+    //                 << connection_id
+    //                 << ", session_id: " << static_cast<int>(session_id)
+    //                 << ", message_id: " << message_id << ", frame: " << packet);
+    //   return RESULT_FAIL;
+    // }
   }
 
   const bool packet_protection_flag = packet->protection_flag();
